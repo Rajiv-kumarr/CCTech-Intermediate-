@@ -2,7 +2,7 @@
 #include <cassert>
 using namespace std;
 
-int i,n;
+unsigned int i,n;
 
 bool Is_Prime()
 {
@@ -24,19 +24,26 @@ bool Is_Prime()
 
     if (is_prime)
     {
-      cout << n << " is a prime no."<<endl;
+      cout <<"Yes, a prime no."<<endl;
     }
     else
-      cout << n << " is not a prime no."<<endl;
+      cout << "Not a prime no."<<endl;
 
     return true;
   }
 
 int main() 
 {
-  cout << "Enter a number: ";
+  cout << "Enter a positive number: ";
   cin >> n;
-  Is_Prime();
+  // Is_Prime();
+
+  if(isdigit(Is_Prime())==true)
+  {
+    return true;
+  }
+  else
+  cout<<"This is not a positive integer value"<<endl;
 
   return 0;
 }
