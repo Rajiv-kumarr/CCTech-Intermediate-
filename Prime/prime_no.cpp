@@ -1,34 +1,41 @@
 #include <iostream>
 using namespace std;
 
-int is_prime(int i)
+int i,n;
+
+int Is_Prime(int)
 {
-    if (i==0 || i==1)
+    bool is_prime = true;
+
+    cout << "Enter a number: ";
+    cin >> n;
+
+    if (n == 0 || n == 1) 
     {
-        cout<<i<<" is not a prime number"<<endl;
+      is_prime = false;
     }
-        else if (i==2 || i==3 || i==5)
-        {
-            cout<<i<<" is a prime number"<<endl;
-        }
-        else if (i!=2 || i!=3 || i!=5)
-        {
-            if(i%2!=0 && i%3!=0 && i%5!=0) 
-            {
-                 cout<<i <<" is a prime number"<<endl;
-            }
-            else
-            {
-                cout<<i<<" is not a prime number"<<endl;
-            }
-             return i;
-        }
 
-}
+    for (i = 2; i <= n/2; ++i) 
+    {
+      if (n % i == 0) 
+      {
+        is_prime = false;
+        break;
+      }
+    }
 
-int main()
+    if (is_prime)
+    {
+      cout << n << " is a prime no."<<endl;
+    }
+    else
+      cout << n << " is not a prime no."<<endl;
+    }
+
+int main() 
 {
-    // cout<<"Enter a integer number :";
-    is_prime(30);
-    return 0;
+  cout << "Enter a number: ";
+  cin >> n;
+  Is_Prime(n);
+  return 0;
 }
