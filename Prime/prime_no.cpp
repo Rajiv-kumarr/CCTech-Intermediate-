@@ -1,14 +1,12 @@
 #include <iostream>
+#include <cassert>
 using namespace std;
 
 int i,n;
 
-int Is_Prime(int)
+bool Is_Prime()
 {
     bool is_prime = true;
-
-    cout << "Enter a number: ";
-    cin >> n;
 
     if (n == 0 || n == 1) 
     {
@@ -30,12 +28,15 @@ int Is_Prime(int)
     }
     else
       cout << n << " is not a prime no."<<endl;
-    }
+
+    return true;
+  }
 
 int main() 
 {
   cout << "Enter a number: ";
   cin >> n;
-  Is_Prime(n);
+  Is_Prime();
+
   return 0;
 }
