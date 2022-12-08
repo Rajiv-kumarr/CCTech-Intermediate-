@@ -1,6 +1,8 @@
 #include <iostream>
 #include <algorithm>
 #include <string>
+#include <cassert>
+#include <sstream>
 using namespace std;
 
 string remove_path(const string& path)
@@ -59,24 +61,62 @@ string call_all_func(string path)
     return file_name4;
 }
 
-void check_test_cases()
+string check_test_cases(string test_case)
 {
-    string tests[]= {"src/Hiker_spec.re" ,"test/hiker_test.exs" ,"wibble/test/hiker_spec.rb" ,"hiker_steps.rb" ,"hiker_spec.rb" ,"test_hiker.rb" ,"test_hiker.py" ,"test_hiker.sh" ,
-    "tests_hiker.sh" ,"test_hiker.coffee" ,"hiker_spec.coffee" ,"hikerTest.chpl" ,"hiker.tests.c" ,"hiker_tests.c" ,"hiker_test.c" ,"hiker_Test.c" ,"HikerTests.cpp" ,"hikerTests.cpp" ,
-    "HikerTest.cs" ,"HikerTest.java" ,"DiamondTest.kt" ,"HikerTest.php" ,"hikerTest.js" ,"hiker-test.js" ,"hiker-spec.js" ,"hiker.test.js" ,"hiker.tests.ts" ,"hiker_tests.erl" ,"hiker_test.clj" ,
-    "fizzBuzz_test.d" , "hiker_test.go" ,"hiker.tests.R" , "hikertests.swift" ,"HikerSpec.groovy" ,"hikerSpec.feature" ,"hiker.feature" ,"hiker.fun" ,"hiker.t" ,"hiker.plt" ,"hiker" 
-    };
+    string final_name=call_all_func(test_case);
+    auto find_name_first_index=test_case.find(final_name);
+    stringstream ss;
+    ss<<"["<<find_name_first_index<<","<<find_name_first_index+final_name.length()<<"]";
+    return ss.str();
+}
 
-    for (string test_case:tests)
-    {
-        string final_name=call_all_func(test_case);
-        auto find_name_first_index=test_case.find(final_name);
-        cout<<test_case <<" : "<<" ["<<find_name_first_index<<","<<find_name_first_index+final_name.length()<<"], ("<<final_name<< ")"<<endl;
-    }
+void test_cases() 
+{
+    assert(check_test_cases("src/Hiker_spec.re")=="[4,9]");
+    assert(check_test_cases("test/hiker_test.exs")=="[5,10]");
+    assert(check_test_cases("wibble/test/hiker_spec.rb")=="[12,17]");
+    assert(check_test_cases("hiker_steps.rb")=="[0,5]");
+    assert(check_test_cases("hiker_spec.rb")=="[0,5]");
+    assert(check_test_cases("test_hiker.rb")=="[5,10]");
+    assert(check_test_cases("test_hiker.py")=="[5,10]");
+    assert(check_test_cases("test_hiker.sh")=="[5,10]");
+    assert(check_test_cases("tests_hiker.sh")=="[6,11]");
+    assert(check_test_cases("test_hiker.coffee")=="[5,10]");
+    assert(check_test_cases("hiker_spec.coffee")=="[0,5]");
+    assert(check_test_cases("hikerTest.chpl")=="[0,5]");
+    assert(check_test_cases("hiker.tests.c")=="[0,5]");
+    assert(check_test_cases("hiker_tests.c")=="[0,5]");
+    assert(check_test_cases("hiker_test.c")=="[0,5]");
+    assert(check_test_cases("hiker_Test.c")=="[0,5]");
+    assert(check_test_cases("HikerTests.cpp")=="[0,5]");
+    assert(check_test_cases("hikerTests.cpp")=="[0,5]");
+    assert(check_test_cases("HikerTest.cs")=="[0,5]");
+    assert(check_test_cases("HikerTest.java")=="[0,5]");
+    assert(check_test_cases("DiamondTest.kt")=="[0,7]");
+    assert(check_test_cases("HikerTest.php")=="[0,5]");
+    assert(check_test_cases("hikerTest.js")=="[0,5]");
+    assert(check_test_cases("hiker-test.js")=="[0,5]");
+    assert(check_test_cases("hiker-spec.js")=="[0,5]");
+    assert(check_test_cases("hiker.test.js")=="[0,5]");
+    assert(check_test_cases("hiker.tests.ts")=="[0,5]");
+    assert(check_test_cases("hiker_tests.erl")=="[0,5]");
+    assert(check_test_cases("hiker_test.clj")=="[0,5]");
+    assert(check_test_cases("fizzBuzz_test.d")=="[0,8]");
+    assert(check_test_cases("hiker_test.go")=="[0,5]");
+    assert(check_test_cases("hiker.tests.R")=="[0,5]");
+    assert(check_test_cases("hikertests.swift")=="[0,5]");
+    assert(check_test_cases("HikerSpec.groovy")=="[0,5]");
+    assert(check_test_cases("hikerSpec.feature")=="[0,5]");
+    assert(check_test_cases("hiker.feature")=="[0,5]");
+    assert(check_test_cases("hiker.fun")=="[0,5]");
+    assert(check_test_cases("hiker.t")=="[0,5]");
+    assert(check_test_cases("hiker.plt")=="[0,5]");
+    assert(check_test_cases("hiker")=="[0,5]");
+    std::cout << "Test cases passed" << std::endl;
 }
 
 int main()
 {
-    check_test_cases();
+    test_cases();
     return 0;
 }
